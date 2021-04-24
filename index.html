@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Статьи</title>
+  <link href="./css/bootstrap.min.css" rel="stylesheet">
+  <link href="./css/style.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container" id="app" v-cloak>
+  <div class="row p-3">
+    <div class="col-12 align-items-left">
+      <img src="./img/logo.png" alt="" class="img-fluid">
+    </div>
+  </div>
+  <form>
+    <div class="row p-3">
+      <div class="col-lg-4 col-md-12 col-12 my-2">
+        <div class="input-group input-group-lg">
+          <input type="text" class="wh-100 form-control" placeholder="Введите Название статьи" v-model="newTitle">
+      </div>
+      </div>
+      <div class="col-lg-4 col-md-12 col-12 my-2">
+        <div class="input-group input-group-lg">
+          <input type="text" class="wh-100 form-control" placeholder="Введите Основной текст" v-model="newBody">
+      </div>
+      </div>
+      <div class="col-lg-4 col-md-12 col-12 my-2">
+        <button type="button" class="wh-100 btn btn-primary btn-lg main-text" v-on:click="greet" style="font-size: 16px;">Добавить новую статью</button>
+      </div>
+      <div class="col-lg-12 col-md-12 col-12 my-2 fs-1"><span class="main-text">Статьи</span></div>
+    </div>
+  </form>
+  <div class="row">
+    <div class="col-lg-4 col-md-12 col-12" style="margin: 5px 0;" v-for="post in displayedPosts">
+      <div class="card mb-12 box-shadow post-cards">
+        <div class="card-body">
+            <h5 class="capitalize title-text">{{post.title}}</h5>
+          <p class="card-text body-text">{{post.body}}...</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="btn-group col-md-2 align-content-lg-start my-3">
+    <button type="button" class="btn btn-sm btn" v-if="page != 1" @click="page--"> << </button>
+    <button type="button" id="pages" class="btn btn-sm btn" :class="{active: page === pageNumber}" v-for="pageNumber in pages" @click="page = pageNumber"> {{pageNumber}} </button>
+    <button type="button" @click="page++" v-if="page < pages.length" class="btn btn-sm btn"> >> </button>
+  </div>
+</div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+<script src="./js/vueapp.js"></script>
+</body>
+</html>
