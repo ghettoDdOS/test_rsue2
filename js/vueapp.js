@@ -3,7 +3,7 @@ const VueApp = new Vue({
     el: '#app',
     data: {
         posts: [],
-        Url: 'http://jsonplaceholder.typicode.com/posts?_limit=20',
+        Url: 'https://jsonplaceholder.typicode.com/posts?_limit=20',
         page: 1,
         perPage: 6,
         pages: [],
